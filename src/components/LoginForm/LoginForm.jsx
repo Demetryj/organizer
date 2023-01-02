@@ -51,8 +51,8 @@ export const LoginForm = () => {
               message: 'Invalid email.',
             },
           })}
-          placeholder=" "
           id="emailId"
+          placeholder=" "
           onChange={() => clearErrors('email')}
         />
         {errors.email && <ErrorMessage>{errors.email?.message}</ErrorMessage>}
@@ -67,10 +67,14 @@ export const LoginForm = () => {
               value: 6,
               message: 'Minimal length is 6 symbols',
             },
+            maxLength: {
+              value: 12,
+              message: 'Maximal length is 12 symbols',
+            },
           })}
+          id="passwordId"
           type="password"
           placeholder=" "
-          id="passwordId"
           onChange={() => clearErrors('password')}
         />
         {errors.password && (
