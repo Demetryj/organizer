@@ -1,34 +1,33 @@
-import { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { useContacts } from 'hooks/useContacts';
 import { addContact } from 'redux/contacts/operations';
 import { Button } from 'components/Button';
+import { ErrorMessage } from 'components/ErrorMessage';
 import { Form, Label, Input } from './StyledAddContactForm';
 
 export const AddContactForm = () => {
-  const [name, setName] = useState('');
-  const [number, setNumber] = useState('');
   const { contacts, isLoading, error } = useContacts();
   const dispatch = useDispatch();
 
-  const handleChangeInput = event => {
-    const { name, value } = event.target;
-    switch (name) {
-      case 'name':
-        setName(value);
-        break;
-      case 'phone':
-        setNumber(value);
-        break;
+  const {
+    register,
+    handleSubmit,
+    getValues,
+    reset,
 
-      default:
-        return;
-    }
-  };
+    formState: { errors },
+    clearErrors,
+  } = useForm({
+    defaultValues: {
+      name: '',
+      number: '',
+    },
+  });
 
-  const handleSubmit = event => {
-    event.preventDefault();
+  const handleAddContact = data => {
+    const { name, number } = getValues();
 
     const searchedContact = contacts.find(contact => contact.name === name);
 
@@ -43,46 +42,73 @@ export const AddContactForm = () => {
       toast.error(`Error! ${name} not added`);
     }
     toast.success(`${name} added to contacts`);
-
-    setName('');
-    setNumber('');
+    console.log(errors);
+    reset();
   };
 
-  const clearInput = name === '' || number === '';
-
   return (
-    <Form onSubmit={handleSubmit}>
+    <Form onSubmit={handleSubmit(handleAddContact)}>
       <Label htmlFor="nameId">
         Name
         <Input
+          {...register('name', {
+            required: 'Username is required.',
+            pattern: {
+              value:
+                /^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$/,
+              message:
+                'It may contain only letters, apostrophe, dash and spaces.',
+            },
+            minLength: {
+              value: 2,
+              message: 'Minimal length is 6 symbols',
+            },
+            maxLength: {
+              value: 36,
+              message: 'Maximal length is 36 symbols',
+            },
+          })}
           id="nameId"
-          type="text"
-          name="name"
-          value={name}
-          pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-          title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-          required
-          onChange={handleChangeInput}
+          tape="text"
           placeholder=" "
+          onChange={() => clearErrors('name')}
         />
+        {errors.name && <ErrorMessage>{errors.name?.message}</ErrorMessage>}
       </Label>
 
-      <Label htmlFor="telId">
-        Phone
+      <Label htmlFor="numberId">
+        Phone number
         <Input
-          id="telId"
+          {...register('number', {
+            required: 'Phone number is required.',
+            pattern: {
+              value:
+                /\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}/,
+
+              message:
+                'It must be digits and can contain spaces, dashes, parentheses.',
+            },
+
+            minLength: {
+              value: 6,
+              message: 'Minimal length is 6 symbols',
+            },
+            maxLength: {
+              value: 21,
+              message: 'Maximal length is 21 symbols',
+            },
+          })}
+          id="numberId"
           type="tel"
-          name="phone"
-          value={number}
-          pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-          title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-          required
-          onChange={handleChangeInput}
           placeholder=" "
+          onChange={() => clearErrors('number')}
         />
+        {errors.number && <ErrorMessage>{errors.number?.message}</ErrorMessage>}
       </Label>
 
-      <Button disabled={isLoading || clearInput}>Add contact</Button>
+      <Button disabled={errors.name || errors.number || isLoading}>
+        Add contact
+      </Button>
     </Form>
   );
 };
