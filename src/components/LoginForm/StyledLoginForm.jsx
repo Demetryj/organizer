@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const Form = styled.form`
   display: flex;
   flex-direction: column;
-  gap: ${props => props.theme.space[4]}px;
+  gap: ${props => props.theme.space[5]}px;
   margin-left: auto;
   margin-right: auto;
   padding: ${props => props.theme.space[3]}px;
@@ -17,6 +17,8 @@ export const Form = styled.form`
 `;
 
 export const Label = styled.label`
+  position: relative;
+
   display: flex;
   flex-direction: column;
 
