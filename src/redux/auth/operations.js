@@ -20,7 +20,7 @@ export const authorization = createAsyncThunk(
       setAuthHeader(response.data.token);
       return response.data;
     } catch (error) {
-      toast.error('You entered incorrect data. Try entering other data.');
+      toast.error('This user is already registered.');
       return thunkAPI.rejectWithValue(error.message);
     }
   }
