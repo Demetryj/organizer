@@ -15,7 +15,6 @@ export const RegisterForm = () => {
     register,
     handleSubmit,
     getValues,
-    reset,
     formState: { errors },
     clearErrors,
   } = useForm({
@@ -36,8 +35,6 @@ export const RegisterForm = () => {
         password,
       })
     );
-
-    reset();
   };
 
   return (
