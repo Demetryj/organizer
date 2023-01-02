@@ -3,10 +3,10 @@ import styled from 'styled-components';
 export const Form = styled.form`
   display: flex;
   flex-direction: column;
-  gap: ${props => props.theme.space[4]}px;
+  gap: ${props => props.theme.space[5]}px;
   padding: ${props => props.theme.space[3]}px;
-  width: 350px;
-  height: 195px;
+  width: 500px;
+  max-height: 220px;
 
   border: ${props => props.theme.borders.normal};
   border-radius: ${props => props.theme.radii.normal};
@@ -16,6 +16,8 @@ export const Form = styled.form`
 `;
 
 export const Label = styled.label`
+  position: relative;
+
   display: flex;
   flex-direction: column;
 
