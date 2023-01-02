@@ -1,19 +1,32 @@
-import { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { useForm } from 'react-hook-form';
 import { logIn } from 'redux/auth/operations';
 import { useAuth } from 'hooks';
 import { Box } from 'components/Box';
 import { Button } from 'components/Button';
+import { ErrorMessage } from 'components/ErrorMessage';
 import { Form, Label, Input } from './StyledLoginForm';
 
 export const LoginForm = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
   const dispatch = useDispatch();
   const { isLoading } = useAuth();
 
-  const handleLogin = event => {
-    event.preventDefault();
+  const {
+    register,
+    handleSubmit,
+    getValues,
+    reset,
+    formState: { errors },
+    clearErrors,
+  } = useForm({
+    defaultValues: {
+      email: '',
+      password: '',
+    },
+  });
+
+  const handleLogin = data => {
+    const { email, password } = getValues();
 
     dispatch(
       logIn({
@@ -21,56 +34,57 @@ export const LoginForm = () => {
         password,
       })
     );
+
+    reset();
   };
-
-  const handleChangeInputValue = event => {
-    const { name, value } = event.target;
-    switch (name) {
-      case 'email':
-        setEmail(value);
-        break;
-
-      case 'password':
-        setPassword(value);
-        break;
-
-      default:
-        return;
-    }
-  };
-
-  const clearInputValue = email === '' || password === '';
 
   return (
-    <Form onSubmit={handleLogin}>
+    <Form onSubmit={handleSubmit(handleLogin)}>
       <Label htmlFor="emailId">
         Email
         <Input
-          id="emailId"
-          type="email"
-          name="email"
-          value={email}
-          required
+          {...register('email', {
+            required: 'Email is required.',
+            pattern: {
+              value:
+                /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
+              message: 'Invalid email.',
+            },
+          })}
           placeholder=" "
-          onChange={handleChangeInputValue}
+          id="emailId"
+          onChange={() => clearErrors('email')}
         />
+        {errors.email && <ErrorMessage>{errors.email?.message}</ErrorMessage>}
       </Label>
 
       <Label htmlFor="passwordId">
         Password
         <Input
-          id="passwordId"
+          {...register('password', {
+            required: 'Password is required.',
+            minLength: {
+              value: 6,
+              message: 'Minimal length is 6 symbols',
+            },
+          })}
           type="password"
-          name="password"
-          value={password}
-          required
           placeholder=" "
-          onChange={handleChangeInputValue}
+          id="passwordId"
+          onChange={() => clearErrors('password')}
         />
+        {errors.password && (
+          <ErrorMessage>{errors.password?.message}</ErrorMessage>
+        )}
       </Label>
 
       <Box mx="auto" as="div">
-        <Button disabled={clearInputValue || isLoading}>Login</Button>
+        <Button
+          type="submit"
+          disabled={errors.email || errors.password || isLoading}
+        >
+          Login
+        </Button>
       </Box>
     </Form>
   );
