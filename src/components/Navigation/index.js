@@ -1,1 +1,1 @@
-export * from 'components/Navigation/Navigation';
+export * from './Navigation';
