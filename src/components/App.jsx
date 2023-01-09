@@ -9,7 +9,7 @@ import { useAuth } from 'hooks';
 
 const HomePage = lazy(() => import('pages/Home'));
 const ContactsPage = lazy(() => import('pages/UserContacts'));
-const AuthorizationPage = lazy(() => import('pages/Authorization'));
+const RegisterPage = lazy(() => import('pages/Register'));
 const LoginPage = lazy(() => import('pages/Login'));
 
 export const App = () => {
@@ -31,7 +31,7 @@ export const App = () => {
           element={
             <RestrictedRoute
               redirectTo="/contacts"
-              component={<AuthorizationPage />}
+              component={<RegisterPage />}
             />
           }
         />
