@@ -1,10 +1,10 @@
 {
   "files": {
     "main.css": "/phonebook/static/css/main.c3d5249d.css",
-    "main.js": "/phonebook/static/js/main.2951cea0.js",
-    "static/js/965.273b7880.chunk.js": "/phonebook/static/js/965.273b7880.chunk.js",
+    "main.js": "/phonebook/static/js/main.50fb0667.js",
+    "static/js/965.bdc1db9f.chunk.js": "/phonebook/static/js/965.bdc1db9f.chunk.js",
     "static/js/99.2288d3a3.chunk.js": "/phonebook/static/js/99.2288d3a3.chunk.js",
-    "static/js/168.08d893c5.chunk.js": "/phonebook/static/js/168.08d893c5.chunk.js",
+    "static/js/477.7fc75e28.chunk.js": "/phonebook/static/js/477.7fc75e28.chunk.js",
     "static/js/97.fbb398ed.chunk.js": "/phonebook/static/js/97.fbb398ed.chunk.js",
     "static/js/887.6159d86b.chunk.js": "/phonebook/static/js/887.6159d86b.chunk.js",
     "static/js/324.8a839f66.chunk.js": "/phonebook/static/js/324.8a839f66.chunk.js",
@@ -13,16 +13,16 @@
     "static/media/avatar.webp": "/phonebook/static/media/avatar.83c416167d6dcc4b16ed.webp",
     "index.html": "/phonebook/index.html",
     "main.c3d5249d.css.map": "/phonebook/static/css/main.c3d5249d.css.map",
-    "main.2951cea0.js.map": "/phonebook/static/js/main.2951cea0.js.map",
-    "965.273b7880.chunk.js.map": "/phonebook/static/js/965.273b7880.chunk.js.map",
+    "main.50fb0667.js.map": "/phonebook/static/js/main.50fb0667.js.map",
+    "965.bdc1db9f.chunk.js.map": "/phonebook/static/js/965.bdc1db9f.chunk.js.map",
     "99.2288d3a3.chunk.js.map": "/phonebook/static/js/99.2288d3a3.chunk.js.map",
-    "168.08d893c5.chunk.js.map": "/phonebook/static/js/168.08d893c5.chunk.js.map",
+    "477.7fc75e28.chunk.js.map": "/phonebook/static/js/477.7fc75e28.chunk.js.map",
     "97.fbb398ed.chunk.js.map": "/phonebook/static/js/97.fbb398ed.chunk.js.map",
     "887.6159d86b.chunk.js.map": "/phonebook/static/js/887.6159d86b.chunk.js.map",
     "324.8a839f66.chunk.js.map": "/phonebook/static/js/324.8a839f66.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.c3d5249d.css",
-    "static/js/main.2951cea0.js"
+    "static/js/main.50fb0667.js"
   ]
 }
