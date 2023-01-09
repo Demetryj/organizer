@@ -11,6 +11,7 @@ export const theme = {
     scroll: 'rgb(125, 125, 139)',
     accent: 'rgba(37, 40, 239, 0.685)',
     red: 'rgba(255, 0, 0)',
+    green: 'rgb(34, 139, 34)',
     white: 'rgb(255, 255, 255)',
     black: '#2a2a2a',
     borderColor: 'rgba(86, 89, 89, 0.52)',
