@@ -13,7 +13,7 @@ export const AboutApplicatin = () => {
         You can add new contacts, delete unnecessary contacts, edit them and
         find the desired contact by name.
       </Text>
-      <Text>To start work, log in.</Text>
+      <Text>Register to get started.</Text>
     </>
   );
 };
