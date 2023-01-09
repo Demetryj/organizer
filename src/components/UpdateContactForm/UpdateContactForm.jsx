@@ -1,12 +1,13 @@
 import { useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
+import { TfiClose } from 'react-icons/tfi';
 import PropTypes from 'prop-types';
 import { updateContact } from 'redux/contacts/operations';
 import { useContacts } from 'hooks/useContacts';
 import { Button } from 'components/Button';
 import { ErrorMessage } from 'components/ErrorMessage';
-import { Form, Label, Input } from './StyledUpdateContactForm';
+import { Form, Label, Input, CloseBtn } from './StyledUpdateContactForm';
 
 export const UpdateContactForm = ({
   contactId,
@@ -104,6 +105,10 @@ export const UpdateContactForm = ({
       <Button disabled={errors.name || errors.number || isLoading}>
         Update contact
       </Button>
+
+      <CloseBtn type="button" onClick={() => closeModal()}>
+        {<TfiClose />}
+      </CloseBtn>
     </Form>
   );
 };
