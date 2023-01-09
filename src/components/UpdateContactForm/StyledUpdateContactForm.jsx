@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
 export const Form = styled.form`
+  position: relative;
+
   display: flex;
   flex-direction: column;
   gap: ${props => props.theme.space[5]}px;
@@ -49,5 +51,40 @@ export const Input = styled.input`
 
   &:not(:placeholder-shown) {
     border-color: ${props => props.theme.colors.accent};
+  }
+`;
+
+export const CloseBtn = styled.button`
+  position: absolute;
+  top: -30px;
+  right: -30px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 0;
+  width: 30px;
+  height: 30px;
+
+  color: ${props => props.theme.colors.primaryText};
+
+  border: ${props => props.theme.radii.none};
+  border-radius: ${props => props.theme.radii.round};
+
+  box-shadow: ${props => props.theme.shadows.third};
+
+  cursor: pointer;
+  transition: color 250ms, background-color 250ms;
+
+  svg {
+    width: 17px;
+    height: 17px;
+  }
+
+  &:hover,
+  &:focus {
+    color: ${props => props.theme.colors.white};
+    background-color: ${props => props.theme.colors.red};
   }
 `;
