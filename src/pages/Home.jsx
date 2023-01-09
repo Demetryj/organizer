@@ -1,19 +1,11 @@
 import { Box } from 'components/Box';
+import { AboutApplicatin } from 'components/AboutApplicatin';
 
 const Home = () => {
   return (
     <main>
-      <Box py={[4]} as="section">
-        <Box
-          display="flex"
-          justifyContent="space-between"
-          px={[4]}
-          mx="auto"
-          maxWidth={1400}
-          as="div"
-        >
-          <h1>PHONEBOOK</h1>
-        </Box>
+      <Box p={[4]} as="section">
+        <AboutApplicatin />
       </Box>
     </main>
   );
