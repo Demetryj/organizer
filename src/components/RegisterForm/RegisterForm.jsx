@@ -1,6 +1,6 @@
 import { useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
-import { authorization } from 'redux/auth/operations';
+import { registration } from 'redux/auth/operations';
 import { useAuth } from 'hooks';
 import { Button } from 'components/Button';
 import { Box } from 'components/Box';
@@ -29,7 +29,7 @@ export const RegisterForm = () => {
     const { name, email, password } = getValues();
 
     dispatch(
-      authorization({
+      registration({
         name,
         email,
         password,
@@ -113,7 +113,7 @@ export const RegisterForm = () => {
         <Button
           disabled={errors.name || errors.email || errors.password || isLoading}
         >
-          Authorization
+          Register
         </Button>
       </Box>
     </Form>
