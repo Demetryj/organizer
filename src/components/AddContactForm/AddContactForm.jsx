@@ -42,7 +42,6 @@ export const AddContactForm = () => {
       toast.error(`Error! ${name} not added`);
     }
     toast.success(`${name} added to contacts`);
-    console.log(errors);
     reset();
   };
 
