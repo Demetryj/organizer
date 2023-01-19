@@ -10,9 +10,7 @@ export const filterSlice = createSlice({
     },
   },
   extraReducers: builder => {
-    builder.addCase(logOut.fulfilled, state => {
-      state.filter = '';
-    });
+    builder.addCase(logOut.fulfilled, state => (state = ''));
   },
 });
 
